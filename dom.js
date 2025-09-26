@@ -1,3 +1,21 @@
+class AddItems extends HTMLElement {
+    constructor(){
+        super()
+
+        let addAddItems = `
+        <form action="" id="item-form">
+        <input type="text">
+        <button>Add item</button>
+        </form>`
+
+        this.innerHTML = addAddItems
+    }
+}
+
+window.customElements.define("add-items", AddItems)
+
+
+
 let itemButton = document.querySelector('#item-form button')
 let itemInput = document.querySelector('#item-form input')
 let searchInput = document.querySelector('#search')
@@ -5,8 +23,23 @@ let list = document.querySelector('#list')
 let itemText;
 let seatch;
 
-itemInput.addEventListener('input', (e) => {itemText = e.target.value})
+
+
+itemInput.addEventListener('test', (e) => {itemText = e.target.value})
+
+
+itemInput.addEventListener('input', () => {
+
+    itemInput.dispatchEvent(
+        new CustomEvent("test", {})
+    )
+
+})
+
+
+
 itemButton.addEventListener('click', addItem)
+
 searchInput.addEventListener('input', search)
 
 function search(e) {
